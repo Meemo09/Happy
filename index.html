@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Boyfriend Day! ❤️</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffe5ec 0%, #ffb3c6 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            color: #fb6f92;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #4a4a4a;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            background-color: #ff8fab;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 143, 171, 0.4);
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #fb6f92;
+            transform: scale(1.05);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .hidden-message {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.6s ease, opacity 0.6s ease, margin-top 0.3s ease;
+            color: #c9184a;
+            font-weight: 600;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .hidden-message.show {
+            max-height: 200px;
+            opacity: 1;
+            margin-top: 25px;
+        }
+
+        /* Floating Hearts Animation */
+        .heart {
+            position: absolute;
+            color: #ffb3c6;
+            font-size: 20px;
+            pointer-events: none;
+            animation: floatUp 6s linear infinite;
+            bottom: -50px;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-105vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Happy Boyfriend's Day! ❤️</h1>
+        <p>To the most amazing, supportive, and handsome boyfriend in the world. Thank you for always being my happy place.</p>
+        
+        <button class="btn" onclick="revealMessage()">Click for a Surprise</button>
+        
+        <div id="surpriseMessage" class="hidden-message">
+            I love you more than words can say! 🌹<br>
+            Thank you for making every single day special. I am so lucky to have you.
+        </div>
+    </div>
+
+    <script>
+        function revealMessage() {
+            const message = document.getElementById('surpriseMessage');
+            message.classList.toggle('show');
+            
+            // Optional: change button text once clicked
+            const btn = document.querySelector('.btn');
+            if (message.classList.contains('show')) {
+                btn.textContent = 'Close Message';
+            } else {
+                btn.textContent = 'Click for a Surprise';
+            }
+        }
+
+        // Generate falling/floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            
+            // Randomize position, size, and speed
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 4 + 's'; // 4s to 7s
+            heart.style.fontSize = Math.random() * 20 + 15 + 'px'; // 15px to 35px
+            heart.style.color = ['#ff8fab', '#ffb3c6', '#fb6f92', '#ffccd5'][Math.floor(Math.random() * 4)];
+            
+            document.body.appendChild(heart);
+            
+            // Remove element after animation completes
+            setTimeout(() => {
+                heart.remove();
+            }, 7000);
+        }
+
+        // Create hearts periodically
+        setInterval(createHeart, 400);
+    </script>
+</body>
+</html>
